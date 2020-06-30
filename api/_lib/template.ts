@@ -80,7 +80,7 @@ function getCss(theme: string, fontSize: string, logoHeight: string) {
 
     .slash {
         color: #BBB;
-        font-family: Times New Roman, Verdana;
+        font-family: 'JetBrainsMono', Times New Roman, Verdana;
         font-size: ${sanitizeHtml(logoHeight) || "100"}px;
         margin-right: 75px;
     }
@@ -119,10 +119,12 @@ export function getHtml(parsedReq: ParsedRequest) {
         <div>
             <div class="logo-wrapper">
               ${getImage(images[0], widths[0], heights[0])}
-              <div class="slash">/</div>
-              <div class="heading">${emojify(
-                  md ? marked(text) : sanitizeHtml(text)
-              )}
+              <div class="heading">
+                <div class="logo-wrapper">
+                    ${getSlash(text) + emojify(
+                        md ? marked(text) : sanitizeHtml(text)
+                    )}
+                </div>
               </div>
             </div>
         </div>
@@ -138,4 +140,12 @@ function getImage(src: string, width ='auto', height = '225') {
         width="${sanitizeHtml(width)}"
         height="${sanitizeHtml(height)}"
     />`
+}
+
+function getSlash(text: string) {
+    if (text != "") {
+        return `<div class="slash">/</div>`
+    } else {
+        return ""
+    }
 }
