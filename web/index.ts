@@ -160,54 +160,6 @@ const imageDarkOptions: DropdownOption[] = [
   },
 ];
 
-const widthOptions = [
-  { text: "width", value: "auto" },
-  { text: "25", value: "25" },
-  { text: "50", value: "50" },
-  { text: "75", value: "75" },
-  { text: "100", value: "100" },
-  { text: "125", value: "125" },
-  { text: "150", value: "150" },
-  { text: "175", value: "175" },
-  { text: "200", value: "200" },
-  { text: "225", value: "225" },
-  { text: "250", value: "250" },
-  { text: "275", value: "275" },
-  { text: "300", value: "300" },
-  { text: "325", value: "325" },
-  { text: "350", value: "350" },
-  { text: "375", value: "375" },
-  { text: "400", value: "400" },
-  { text: "425", value: "425" },
-  { text: "450", value: "450" },
-  { text: "475", value: "475" },
-  { text: "500", value: "500" },
-];
-
-const heightOptions = [
-  { text: "height", value: "auto" },
-  { text: "25", value: "25" },
-  { text: "50", value: "50" },
-  { text: "75", value: "75" },
-  { text: "100", value: "100" },
-  { text: "125", value: "125" },
-  { text: "150", value: "150" },
-  { text: "175", value: "175" },
-  { text: "200", value: "200" },
-  { text: "225", value: "225" },
-  { text: "250", value: "250" },
-  { text: "275", value: "275" },
-  { text: "300", value: "300" },
-  { text: "325", value: "325" },
-  { text: "350", value: "350" },
-  { text: "375", value: "375" },
-  { text: "400", value: "400" },
-  { text: "425", value: "425" },
-  { text: "450", value: "450" },
-  { text: "475", value: "475" },
-  { text: "500", value: "500" },
-];
-
 interface AppState extends ParsedRequest {
   loading: boolean;
   showToast: boolean;
@@ -295,7 +247,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
           }),
         }),
         H(Field, {
-          label: "Font Size",
+          label: "Size",
           input: H(Dropdown, {
             options: fontSizeOptions,
             value: fontSize,
@@ -337,30 +289,6 @@ const App = (_: any, state: AppState, setState: SetState) => {
                 });
               },
             }),
-            H(
-              "div",
-              { className: "field-flex" },
-              H(Dropdown, {
-                options: widthOptions,
-                value: widths[0],
-                small: true,
-                onchange: (val: string) => {
-                  let clone = [...widths];
-                  clone[0] = val;
-                  setLoadingState({ widths: clone });
-                },
-              }),
-              H(Dropdown, {
-                options: heightOptions,
-                value: heights[0],
-                small: true,
-                onchange: (val: string) => {
-                  let clone = [...heights];
-                  clone[0] = val;
-                  setLoadingState({ heights: clone });
-                },
-              })
-            )
           ),
         })
       )

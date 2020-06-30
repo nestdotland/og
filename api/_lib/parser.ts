@@ -5,7 +5,7 @@ import { ParsedRequest, Theme } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { fontSize, images, widths, heights, theme, md } = (query || {});
+    const { fontSize, images, theme, md } = (query || {});
 
     if (Array.isArray(fontSize)) {
         throw new Error('Expected a single fontSize');
@@ -33,8 +33,6 @@ export function parseRequest(req: IncomingMessage) {
         md: md === '1' || md === 'true',
         fontSize: fontSize || '96px',
         images: getArray(images),
-        widths: getArray(widths),
-        heights: getArray(heights),
     };
     parsedRequest.images = getDefaultImages(parsedRequest.images, parsedRequest.theme);
     return parsedRequest;
@@ -59,6 +57,9 @@ function getDefaultImages(images: string[], theme: Theme): string[] {
         return [defaultImage];
     }
     if (!images[0].startsWith('https://assets.vercel.com/') && !images[0].startsWith('https://nest.land/') && !images[0].startsWith('https://cdn.maximousblk.now.sh/')) {
+        images[0] = defaultImage;
+    }
+    if (images[0] == 'nestDefault') {
         images[0] = defaultImage;
     }
     return images;

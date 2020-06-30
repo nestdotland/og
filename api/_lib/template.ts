@@ -11,7 +11,7 @@ const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
 const mono = readFileSync(`${__dirname}/../_fonts/JetBrainsMono-Regular.woff2`).toString('base64');
 
-function getCss(theme: string, fontSize: string, logoHeight: string) {
+function getCss(theme: string, fontSize: string) {
     let background = 'white';
     let foreground = 'black';
     let radial = 'lightgray';
@@ -81,7 +81,7 @@ function getCss(theme: string, fontSize: string, logoHeight: string) {
     .slash {
         color: #BBB;
         font-family: 'JetBrainsMono', Times New Roman, Verdana;
-        font-size: ${sanitizeHtml(logoHeight) || "100"}px;
+        font-size: ${sanitizeHtml(fontSize) || "100"}px;
         margin-right: 75px;
     }
 
@@ -106,19 +106,19 @@ function getCss(theme: string, fontSize: string, logoHeight: string) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights } = parsedReq;
+    const { text, theme, md, fontSize, images,} = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize, heights[0])}
+        ${getCss(theme, fontSize)}
     </style>
     <body>
         <div>
             <div class="logo-wrapper">
-              ${getImage(images[0], widths[0], heights[0])}
+              ${getImage(images[0], fontSize)}
               <div class="heading">
                 <div class="logo-wrapper">
                     ${getSlash(text) + emojify(
@@ -132,12 +132,12 @@ export function getHtml(parsedReq: ParsedRequest) {
 </html>`;
 }
 
-function getImage(src: string, width ='auto', height = '225') {
+function getImage(src: string, height = '225') {
     return `<img
         class="logo"
         alt="Generated Image"
         src="${sanitizeHtml(src)}"
-        width="${sanitizeHtml(width)}"
+        width="auto"
         height="${sanitizeHtml(height)}"
     />`
 }

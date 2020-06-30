@@ -8,6 +8,4 @@ export interface ParsedRequest {
     md: boolean;
     fontSize: string;
     images: string[];
-    widths: string[];
-    heights: string[];
 }
