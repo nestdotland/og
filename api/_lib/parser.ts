@@ -6,9 +6,6 @@ export function parseRequest(req: IncomingMessage) {
   console.log("HTTP " + req.url);
   const { pathname, query } = parse(req.url || "/", true);
   const { fontSize, images, theme, md } = query || {};
-  var fontSizeOverride = "";
-
-  var packageUrl: boolean = false;
 
   if (Array.isArray(fontSize)) {
     throw new Error("Expected a single fontSize");
@@ -29,21 +26,12 @@ export function parseRequest(req: IncomingMessage) {
     text = arr.join(".");
   }
 
-  if (
-    req.headers.referer != undefined &&
-    req.headers.referer.includes("https://nest.land/package/")
-  ) {
-    var packageUrl = true;
-    text = req.headers.referer.replace("https://nest.land/package/", "");
-    fontSizeOverride = "250px";
-  }
-
   const parsedRequest: ParsedRequest = {
     fileType: extension === "jpeg" ? extension : "png",
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
-    md: packageUrl === false && (md === "1" || md === "true"),
-    fontSize: fontSizeOverride == "" ? fontSize || "100px" : fontSizeOverride,
+    md: md === "1" || md === "true",
+    fontSize: fontSize || "100px",
     images: getArray(images),
   };
   parsedRequest.images = getDefaultImages(
