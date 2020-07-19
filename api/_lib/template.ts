@@ -146,6 +146,6 @@ function getSlash(text: string) {
     if (text != "") {
         return `<div class="slash">/</div>`
     } else {
-        return ""
+        return "nest.land"
     }
 }
