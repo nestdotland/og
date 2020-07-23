@@ -72,6 +72,11 @@ function getCss(theme: string, fontSize: string) {
         align-content: center;
         justify-content: center;
         justify-items: center;
+        font-family: 'Inter', sans-serif;
+        font-size: ${sanitizeHtml(fontSize)};
+        font-style: normal;
+        color: ${foreground};
+        line-height: 1.8;
     }
 
     .logo {
@@ -85,6 +90,12 @@ function getCss(theme: string, fontSize: string) {
         margin-right: 75px;
     }
 
+    .plus {
+        color: #BBB;
+        font-family: 'JetBrainsMono', Times New Roman, Verdana;
+        font-size: ${sanitizeHtml(fontSize) || "100"}px;
+    }
+
     .spacer {
         margin: 150px;
     }
@@ -94,14 +105,6 @@ function getCss(theme: string, fontSize: string) {
         width: 1em;
         margin: 0 .05em 0 .1em;
         vertical-align: -0.1em;
-    }
-    
-    .heading {
-        font-family: 'Inter', sans-serif;
-        font-size: ${sanitizeHtml(fontSize)};
-        font-style: normal;
-        color: ${foreground};
-        line-height: 1.8;
     }`;
 }
 
@@ -118,14 +121,14 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             <div class="logo-wrapper">
-              ${getImage(images[0], fontSize)}
-              <div class="heading">
-                <div class="logo-wrapper">
-                    ${getSlash(text) + emojify(
-                        md ? marked(text) : sanitizeHtml(text)
-                    )}
-                </div>
-              </div>
+                ${
+                    images.map((img, i) =>
+                    getPlusSign(i) + getImage(img, fontSize)
+                    ).join("")
+                }
+                ${getSlash(text) + emojify(
+                    md ? marked(text) : sanitizeHtml(text)
+                )}
             </div>
         </div>
     </body>
@@ -148,4 +151,8 @@ function getSlash(text: string) {
     } else {
         return "nest.land"
     }
+}
+
+function getPlusSign(i: number) {
+    return i === 0 ? '' : '<div class="plus">+</div>';
 }

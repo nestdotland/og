@@ -36,7 +36,7 @@ export function parseRequest(req: IncomingMessage) {
   };
   parsedRequest.images = getDefaultImages(
     parsedRequest.images,
-    parsedRequest.theme
+    parsedRequest.theme,
   );
   return parsedRequest;
 }
@@ -52,23 +52,21 @@ function getArray(stringOrArray: string[] | string | undefined): string[] {
 }
 
 function getDefaultImages(images: string[], theme: Theme): string[] {
-  const defaultImage =
-    theme === "light"
-      ? "https://nest.land/images/nest.land/logo_light.svg"
-      : "https://nest.land/images/nest.land/logo_dark.svg";
+  const defaultImage = theme === "light"
+    ? "https://nest.land/images/nest.land/logo_light.svg"
+    : "https://nest.land/images/nest.land/logo_dark.svg";
 
   if (!images || !images[0]) {
     return [defaultImage];
   }
   if (
     !images[0].startsWith("https://assets.vercel.com/") &&
-    !images[0].startsWith("https://nest.land/") &&
-    !images[0].startsWith("https://cdn.maximousblk.now.sh/")
+    !images[0].startsWith("https://nest.land/")
   ) {
-    images[0] = defaultImage;
+    images.unshift(defaultImage);
   }
   if (images[0] == "nestDefault") {
-    images[0] = defaultImage;
+    images.unshift(defaultImage);
   }
   return images;
 }
