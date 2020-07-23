@@ -81,14 +81,14 @@ function getCss(theme: string, fontSize: string) {
     .slash {
         color: #BBB;
         font-family: 'JetBrainsMono', Times New Roman, Verdana;
-        font-size: ${sanitizeHtml(fontSize) || "100"}px;
+        font-size: ${sanitizeHtml(fontSize) || "200"}px;
         margin-right: 75px;
     }
 
     .plus {
         color: #BBB;
         font-family: 'JetBrainsMono', Times New Roman, Verdana;
-        font-size: ${sanitizeHtml(fontSize) || "100"}px;
+        font-size: ${sanitizeHtml(fontSize) || "200"}px;
     }
 
     .spacer {
@@ -123,18 +123,16 @@ export function getHtml(parsedReq: ParsedRequest) {
     </style>
     <body>
         <div>
-            <div class="logo-wrapper">
-                ${
-                    images.map((img, i) =>
-                    getPlusSign(i) + getImage(img, fontSize)
-                    ).join("")
-                }
-                <div class="heading">
-                    <div class="logo-wrapper">
-                        ${getSlash(text) + emojify(
-                            md ? marked(text) : sanitizeHtml(text)
-                        )}
-                    </div>
+            <div class="heading">
+                <div class="logo-wrapper">
+                    ${
+                        images.map((img, i) =>
+                        getPlusSign(i) + getImage(img, fontSize)
+                        ).join("")
+                    }
+                    ${getSlash(text) + emojify(
+                        md ? marked(text) : sanitizeHtml(text)
+                    )}
                 </div>
             </div>
         </div>
@@ -142,7 +140,7 @@ export function getHtml(parsedReq: ParsedRequest) {
 </html>`;
 }
 
-function getImage(src: string, height = '225') {
+function getImage(src: string, height = '200') {
     return `<img
         class="logo"
         alt="Generated Image"
