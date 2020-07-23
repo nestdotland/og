@@ -52,11 +52,6 @@ function getCss(theme: string, fontSize: string) {
         text-align: center;
         align-items: center;
         justify-content: center;
-        font-family: 'Inter', sans-serif;
-        font-size: ${sanitizeHtml(fontSize)};
-        font-style: normal;
-        color: ${foreground};
-        line-height: 1.8;
     }
 
     code {
@@ -105,6 +100,14 @@ function getCss(theme: string, fontSize: string) {
         width: 1em;
         margin: 0 .05em 0 .1em;
         vertical-align: -0.1em;
+    }
+    
+    .heading {
+        font-family: 'Inter', sans-serif;
+        font-size: ${sanitizeHtml(fontSize)};
+        font-style: normal;
+        color: ${foreground};
+        line-height: 1.8;
     }`;
 }
 
@@ -126,9 +129,13 @@ export function getHtml(parsedReq: ParsedRequest) {
                     getPlusSign(i) + getImage(img, fontSize)
                     ).join("")
                 }
-                ${getSlash(text) + emojify(
-                    md ? marked(text) : sanitizeHtml(text)
-                )}
+                <div class="heading">
+                    <div class="logo-wrapper">
+                        ${getSlash(text) + emojify(
+                            md ? marked(text) : sanitizeHtml(text)
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     </body>
