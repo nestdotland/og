@@ -52,6 +52,11 @@ function getCss(theme: string, fontSize: string) {
         text-align: center;
         align-items: center;
         justify-content: center;
+        font-family: 'Inter', sans-serif;
+        font-size: ${sanitizeHtml(fontSize)};
+        font-style: normal;
+        color: ${foreground};
+        line-height: 1.8;
     }
 
     code {
@@ -72,11 +77,6 @@ function getCss(theme: string, fontSize: string) {
         align-content: center;
         justify-content: center;
         justify-items: center;
-        font-family: 'Inter', sans-serif;
-        font-size: ${sanitizeHtml(fontSize)};
-        font-style: normal;
-        color: ${foreground};
-        line-height: 1.8;
     }
 
     .logo {
