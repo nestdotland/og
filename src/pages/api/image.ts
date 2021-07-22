@@ -3,7 +3,7 @@ import { getScreenshot } from "./_lib/chromium";
 import { parseRequest } from "./_lib/parser";
 import { getHtml } from "./_lib/template";
 
-const isDev = process.env.VERCEL_ENV != "production";
+const isDev = process.env.VERCEL_ENV == undefined;
 
 const handler: NextApiHandler = async (req, res) => {
   try {
