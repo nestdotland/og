@@ -4,8 +4,9 @@
   },
   "regions": ["all"],
   "functions": {
-    "api/**": {
-      "memory": 3008
+    "src/pages/api/**": {
+      "memory": 3008,
+      "maxDuration": 60
     }
   }
 }
