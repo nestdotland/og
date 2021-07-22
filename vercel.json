@@ -2,5 +2,11 @@
   "github": {
     "silent": true
   },
-  "regions": ["all"]
+  "regions": ["all"],
+  "functions": {
+    "src/pages/api/**": {
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  }
 }
