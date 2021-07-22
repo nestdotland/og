@@ -1,6 +1,0 @@
-.now
-.vercel
-.vscode
-node_modules
-api/dist
-public/dist
