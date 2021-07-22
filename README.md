@@ -61,7 +61,7 @@ yarn start
 
 # 🙌 Acknowledgement
 
-Credit where credit is due. This started as a forked repo from [Railway's OG image generator](https://og.railway.app/). The main differences are
+Credit where credit is due. This started as a forked repo from [Railway's OG image generator](https://og.railway.app/)
 
 # License
 
