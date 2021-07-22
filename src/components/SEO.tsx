@@ -15,7 +15,7 @@ const description = "Service that generates dynamic OG images for nest.land";
 
 // Generate OG image for itself
 const image =
-  "https://og.nest.land/api/image?fileType=png&layoutName=Page&Theme=Dark&Title=Open+Graph+%5Cn+Image+Generator&Subtitle=%60og.nest.land%60";
+  "https://og.nest.land/api/image?fileType=png&layoutName=Page&Theme=Dark&Title=Open+Graph%5CnImage+Generator&Subtitle=%60og.nest.land%60";
 
 const config: DefaultSeoProps = {
   title,

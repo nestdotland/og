@@ -2,7 +2,7 @@
 
 Service that dynamically generates [Open Graph](https://ogp.me/) images for [Nest](https://nest.land) that looks something like
 
-<img width="600" src="https://og.nest.land/api/image?layoutName=Pattern" />
+<img width="600" src="https://og.nest.land/api/image?layoutName=Pattern&Text=Hello+World" />
 
 # ✨ How To Use
 
@@ -11,7 +11,7 @@ Use the generated image URL in the `<head>` of your HTML document as the og:imag
 ```html
 <meta
   property="og:image"
-  content="https://og.nest.land/api/image?layoutName=Pattern"
+  content="https://og.nest.land/api/image?layoutName=Pattern&Text=Hello+World"
 />
 ```
 
