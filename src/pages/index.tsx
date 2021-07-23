@@ -143,17 +143,17 @@ export const Viewer: React.FC = () => {
       <div
         className="image-wrapper"
         css={[
-          tw`w-full relative`,
+          tw`
+          w-full relative
+          border border-gray-600
+          rounded-lg overflow-hidden
+          `,
           { paddingTop: `${(OG_HEIGHT / OG_WIDTH) * 100}%` },
         ]}
       >
         <img
           css={[
-            tw`
-              absolute inset-0 w-full
-              rounded-md overflow-hidden
-              border border-gray-600
-            `,
+            tw`absolute inset-0 h-full`,
             !isLoaded && {
               filter: "blur(5px)",
             },
